@@ -63,7 +63,6 @@ const Home = ({
 
   const {
     state: {
-      apiKey,
       lightMode,
       folders,
       conversations,
@@ -76,6 +75,7 @@ const Home = ({
 
   const stopConversationRef = useRef<boolean>(false);
 
+  let apiKey = "EMPTY";
   const { data, error, refetch } = useQuery(
     ['GetModels', apiKey, serverSideApiKeyIsSet],
     ({ signal }) => {
@@ -91,6 +91,9 @@ const Home = ({
     { enabled: true, refetchOnMount: false },
   );
 
+  console.log('data', data);
+  console.log('error', error);
+  
   useEffect(() => {
     if (data) dispatch({ field: 'models', value: data });
   }, [data, dispatch]);

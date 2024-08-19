@@ -152,6 +152,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
           let done = false;
           let isFirst = true;
           let text = '';
+          let accumulatedText = '';
           while (!done) {
             if (stopConversationRef.current === true) {
               controller.abort();
@@ -162,11 +163,18 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
             done = doneReading;
             const chunkValue = decoder.decode(value);
             text += chunkValue;
+            
+            // regex to get many SSE data 
+            const sseRegex = /data: (.*)\r\n/gm;
+            const regExmatches = chunkValue.matchAll(sseRegex);
+            const matchesArray = Array.from(regExmatches);
+            const matches = matchesArray.map(match => match[1]).join('\r\n');
+            accumulatedText += matches;
             if (isFirst) {
               isFirst = false;
               const updatedMessages: Message[] = [
                 ...updatedConversation.messages,
-                { role: 'assistant', content: chunkValue },
+                { role: 'assistant', content: accumulatedText },
               ];
               updatedConversation = {
                 ...updatedConversation,
@@ -182,7 +190,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
                   if (index === updatedConversation.messages.length - 1) {
                     return {
                       ...message,
-                      content: text,
+                      content: accumulatedText,
                     };
                   }
                   return message;

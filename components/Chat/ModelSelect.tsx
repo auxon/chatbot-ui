@@ -22,7 +22,7 @@ export const ModelSelect = () => {
         key: 'model',
         value: models.find(
           (model) => model.id === e.target.value,
-        ) as OpenAIModel,
+        ),
       });
   };
 
