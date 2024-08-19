@@ -1,0 +1,50 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "Next.js: debug full stack",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "npm run dev",
+            "serverReadyAction": {
+              "pattern": "started server on .+, url: (https?://.+)",
+              "uriFormat": "%s",
+              "action": "debugWithChrome"
+            },
+            "autoAttachChildProcesses": true,
+          },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Next.js Server",
+            "runtimeExecutable": "node",
+            "program": "${workspaceFolder}/node_modules/next/dist/bin/next",
+            "args": [
+                "dev"
+            ],
+            "cwd": "${workspaceFolder}",
+            "protocol": "inspector",
+            "port": 9229,
+            "sourceMaps": true,
+            "outFiles": [
+                "${workspaceFolder}/.next/**/*.js"
+            ],
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "name": "Debug Next.js Client",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}",
+            "sourceMaps": true,
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+        }
+    ]
+}

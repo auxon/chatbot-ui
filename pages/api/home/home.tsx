@@ -412,10 +412,11 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   if (googleApiKey && googleCSEId) {
     serverSidePluginKeysSet = true;
   }
-
+  console.log("OPENAI_API_KEY:  " + process.env.OPENAI_API_KEY)
   return {
     props: {
-      serverSideApiKeyIsSet: !!process.env.OPENAI_API_KEY,
+      serverSideApiKey: process.env.OPENAI_API_KEY,
+      serverSideApiKeyIsSet: false,
       defaultModelId,
       serverSidePluginKeysSet,
       ...(await serverSideTranslations(locale ?? 'en', [
