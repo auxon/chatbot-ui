@@ -165,10 +165,10 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
             text += chunkValue;
             
             // regex to get many SSE data 
-            const sseRegex = /data: (.*)\r\n\r\n/gm;
+            const sseRegex = /data: (.*)\r\n/gm;
             const regExmatches = chunkValue.matchAll(sseRegex);
             const matchesArray = Array.from(regExmatches);
-            const matches = matchesArray.map(match => match[1]).join('');
+            const matches = matchesArray.map(match => match[1]).join('\r\n');
             accumulatedText += matches;
             if (isFirst) {
               isFirst = false;
