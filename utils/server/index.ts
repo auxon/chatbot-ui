@@ -60,7 +60,7 @@ export const OpenAIStream = async (
         "filename": "None",
         "title": "None",
         "username": "None",
-        "state": "Unavailable"
+        "state": "UNAVAILABLE"
       }
     }),
   });
