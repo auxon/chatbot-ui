@@ -10,7 +10,7 @@ services:
 
   backend:
     build:
-      context: ./backend
+      context: ../server
       dockerfile: Dockerfile
     ports:
-      - 8000:8000
+      - 8888:8888
