@@ -48,7 +48,7 @@ export const OpenAIStream = async (
       },
       messages: [
         {
-          role: 'system',
+          role: 'System',
           content: systemPrompt,
         },
         ...messages,

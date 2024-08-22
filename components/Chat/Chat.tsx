@@ -174,7 +174,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
               isFirst = false;
               const updatedMessages: Message[] = [
                 ...updatedConversation.messages,
-                { role: 'assistant', content: accumulatedText },
+                { role: 'AI', content: accumulatedText },
               ];
               updatedConversation = {
                 ...updatedConversation,
