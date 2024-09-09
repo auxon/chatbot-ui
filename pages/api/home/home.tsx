@@ -63,6 +63,7 @@ const Home = ({
 
   const {
     state: {
+      apiKey,
       lightMode,
       folders,
       conversations,
@@ -75,7 +76,6 @@ const Home = ({
 
   const stopConversationRef = useRef<boolean>(false);
 
-  let apiKey = "EMPTY";
   const { data, error, refetch } = useQuery(
     ['GetModels', apiKey, serverSideApiKeyIsSet],
     ({ signal }) => {
@@ -419,7 +419,7 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   return {
     props: {
       serverSideApiKey: process.env.OPENAI_API_KEY,
-      serverSideApiKeyIsSet: false,
+      serverSideApiKeyIsSet: process.env.OPENAI_API_KEY ? true : false,
       defaultModelId,
       serverSidePluginKeysSet,
       ...(await serverSideTranslations(locale ?? 'en', [

@@ -6,7 +6,7 @@
             "name": "Next.js: debug full stack",
             "type": "node-terminal",
             "request": "launch",
-            "command": "npm run dev",
+            "command": "npm run dev -- --port 5173",
             "serverReadyAction": {
               "pattern": "started server on .+, url: (https?://.+)",
               "uriFormat": "%s",
@@ -39,7 +39,7 @@
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "name": "Debug Next.js Client",
-            "url": "http://localhost:3000",
+            "url": "http://localhost:5173",
             "webRoot": "${workspaceFolder}",
             "sourceMaps": true,
             "skipFiles": [

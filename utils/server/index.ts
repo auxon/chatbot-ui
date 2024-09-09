@@ -41,10 +41,10 @@ export const OpenAIStream = async (
     body: JSON.stringify({
       "id": "alkasdfasdf",
       "model": {
-        "id": "llama-2-70b.Q5_K_M",
-        "name": "llama-2-70b.Q5_K_M",
-        "maxLength": 2048,
-        "tokenLimit": 2048
+        "id": model.id,
+        "name": model.name,
+        "maxLength": model.maxLength,
+        "tokenLimit": model.tokenLimit
       },
       messages: [
         {
@@ -53,8 +53,8 @@ export const OpenAIStream = async (
         },
         ...messages,
       ],
-      "maxTokens": 2048,
-      "temperature": 0,
+      "maxTokens": 4096,
+      "temperature": temperature,
       "prompt": "HUMAN: \n You are a helpful AI assistant.  Use the following context and chat history to answer the question at the end with a helpful answer.  Get straight to the point and always think things through step-by-step before answering.  If you don't know the answer, just say 'I don't know'; don't try to make up an answer. \n\n<context>{context}</context>\n<chat_history>{chat_history}</chat_history>\n<question>{question}</question>\n\nAI:  Here is the most relevant sentence in the context:  \n",
       "file": {
         "filename": "None",
